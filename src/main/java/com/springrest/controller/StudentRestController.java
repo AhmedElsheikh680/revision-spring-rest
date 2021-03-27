@@ -1,11 +1,11 @@
 package com.springrest.controller;
 
 import com.springrest.entity.Student;
+import com.springrest.exception.StudentErrorResponse;
 import com.springrest.exception.StudentNotFoundException;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class StudentRestController {
     }
 
     @GetMapping("/students")
-    public List<Student> getStudentss(){
+    public List<Student> getStudents(){
 
         return students;
     }
@@ -38,4 +38,27 @@ public class StudentRestController {
         }
         return students.get(id);
     }
+
+    // Add An Exception Handler Using @ExceptionHandler
+    @ExceptionHandler
+    public ResponseEntity<StudentErrorResponse> handleException(StudentNotFoundException e){
+        StudentErrorResponse error = new StudentErrorResponse();
+        error.setStatus(HttpStatus.NOT_FOUND.value());
+        error.setMessage(e.getMessage());
+        error.setTimestamp(System.currentTimeMillis());
+
+        return new ResponseEntity<>(error,HttpStatus.NOT_FOUND);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 }
