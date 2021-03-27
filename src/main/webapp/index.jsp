@@ -8,7 +8,7 @@
 <h3>Spring Rest API Demo</h3>
 <hr>
 <a href="${pageContext.request.contextPath }/test/hello">Hello</a>
-<br><br><br>
+<br><br>
 <a href="${pageContext.request.contextPath}/api/v1/students">Get All Students</a>
 </body>
 </html>
