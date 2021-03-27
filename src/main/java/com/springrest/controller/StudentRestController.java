@@ -2,6 +2,7 @@ package com.springrest.controller;
 
 import com.springrest.entity.Student;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,5 +28,10 @@ public class StudentRestController {
     public List<Student> getStudents(){
 
         return students;
+    }
+
+    @GetMapping("/students/{id}")
+    public Student getStudentById(@PathVariable int id){
+        return students.get(id);
     }
 }
