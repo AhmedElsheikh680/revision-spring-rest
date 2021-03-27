@@ -26,7 +26,7 @@ public class StudentRestController {
     }
 
     @GetMapping("/students")
-    public List<Student> getStudents(){
+    public List<Student> getStudentss(){
 
         return students;
     }
